@@ -1,6 +1,7 @@
 import './css/App.css';
 import Favourites from './pages/Favorites';
 import Home from './pages/Home';
+import LogIn from './components/LogIn'
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import { MovieProvider } from './contexts/MovieContext';
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <main className='main-content'>
         <Routes>
+          <Route path="/auth" element={<LogIn />}/>
           <Route path="/" element={<Home />}/>
           <Route path="/favorites" element={<Favourites />}/>
         </Routes>

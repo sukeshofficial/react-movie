@@ -1,0 +1,57 @@
+/* Container */
+.auth {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #242424;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Heading */
+.auth h2 {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Buttons */
+.auth button {
+    width: 240px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    color: #242424;
+    font-weight: bold;
+}
+
+/* Google style */
+.auth button:nth-child(2) {
+    background-color: #ffffff;
+}
+
+.auth button:nth-child(2):hover {
+    background-color: #e9f4ff;
+}
+
+/* GitHub style */
+.auth button:nth-child(3) {
+    background-color: #131313;
+    color: white;
+}
+
+.auth button:nth-child(3):hover {
+    background-color: #070707;
+}
+
+/* Button hover animation */
+.auth button:active {
+    transform: scale(0.96);
+}
