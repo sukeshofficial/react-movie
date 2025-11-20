@@ -1,84 +1,137 @@
+/* ===========================================
+   MODERN ROOT DESIGN SYSTEM
+=========================================== */
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-  
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Modern Variable Colors */
+  --bg-dark: #151515f8;
+  --bg-light: #ffffff;
+
+  --text-dark: #e5e5e5;
+  --text-light: #1a1a1a;
+
+  --primary: #e50914; /* Netflix red */
+  --primary-hover: #ff0a16;
+
+  --rounded: 12px;
+  --transition: 0.25s ease;
+
+  /* Better font stack */
+  --font-main: "Inter", "Poppins", "Roboto", system-ui, sans-serif;
+
+  font-family: var(--font-main);
+  font-weight: 400;
+  line-height: 1.55;
+
+  color: var(--text-dark);
+  background-color: var(--bg-dark);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===========================================
+   RESET (MODERN & MINIMAL)
+=========================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Keep layout consistent */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===========================================
+   TYPOGRAPHY
+=========================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+p {
+  color: #b9b9b9;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ===========================================
+   LINKS (modern minimal)
+=========================================== */
+a {
+  color: #9bb2ff;
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: #c3d0ff;
+}
+
+/* ===========================================
+   BUTTONS (modern uniform style)
+=========================================== */
+button {
+  padding: 0.6em 1.3em;
+  border-radius: var(--rounded);
+  font-size: 1rem;
+  font-weight: 500;
+  background: #1f1f1f;
+  border: 1px solid transparent;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background: #2a2a2a;
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ===========================================
+   LIGHT MODE SUPPORT
+=========================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: var(--bg-light);
+    color: var(--text-light);
   }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    overflow-x: hidden;
-  }
-  
+
   body {
-    margin: 0;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
+    background: var(--bg-light);
   }
-  
-  #root {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
+    color: #3b4bff;
   }
-  a:hover {
-    color: #535bf2;
-  }
-  
-  h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-  }
-  
+
   button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
+    background: #f1f1f1;
+    color: #1a1a1a;
   }
+
   button:hover {
-    border-color: #646cff;
+    background: #e2e2e2;
   }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: #ffffff;
-    }
-    a:hover {
-      color: #747bff;
-    }
-    button {
-      background-color: #f9f9f9;
-    }
-  }
+}

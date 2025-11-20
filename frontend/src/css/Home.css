@@ -1,63 +1,141 @@
+/* ===============================
+   HOME WRAPPER
+==================================*/
 .home {
-    padding: 2rem 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .search-form {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    display: flex;
-    gap: 1rem;
-    padding: 0 1rem;
-    box-sizing: border-box;
-  }
-  
-  .search-input {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #333333;
-    color: white;
-    font-size: 1rem;
-  }
-  
-  .search-input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #666;
-  }
-  
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   SEARCH BAR
+==================================*/
+.search-form {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  margin-top: 4rem;
+  display: flex;
+  gap: 1rem;
+  padding: 0 1.2rem;
+  box-sizing: border-box;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 50px;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #666;
+}
+
+.search-button {
+  width: 48px;
+  height: 48px;
+  background-color: #e50914;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  border: none;
+  cursor: pointer;
+
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.search-button:hover {
+  background-color: #f40612;
+  transform: scale(1.08);
+}
+
+/* Icon inside */
+.search-button img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1); /* force white icon look */
+  pointer-events: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
   .search-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #e50914;
-    color: white;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: background-color 0.2s;
-    white-space: nowrap;
+    width: 42px;
+    height: 42px;
   }
-  
-  .search-button:hover {
-    background-color: #f40612;
+
+  .search-button img {
+    width: 18px;
+    height: 18px;
   }
-  
-  
-  @media (max-width: 639px) {
-    .home {
-      padding: 1rem 0;
-    }
-  
-    .search-form {
-      margin-bottom: 1rem;
-    }
+}
+
+
+/* ===============================
+   MOVIES GRID
+==================================*/
+.movies-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Auto responsive grid */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+==================================*/
+
+/* Small Phones 320px → 480px */
+@media (max-width: 480px) {
+  .home {
+    padding: 1rem 0;
   }
-  
-  .movies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
+
+  .search-form {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-button {
     width: 100%;
-    box-sizing: border-box;
+    text-align: center;
   }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Tablets (600px → 899px) */
+@media (max-width: 899px) {
+  .search-form {
+    padding: 0 1rem;
+    max-width: 600px;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}

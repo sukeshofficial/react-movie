@@ -2,6 +2,7 @@ import MovieCard from "../components/MovieCard";
 import { useState, useEffect } from "react";
 import { getPopularMovies, searchMovies } from "../services/api";
 import "../css/Home.css";
+import SearchIcon from "../assets/search-icon.png";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,7 +57,7 @@ function Home() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button type="submit" className="search-button">
-          Search
+          <img src={SearchIcon}></img>
         </button>
       </form>
 

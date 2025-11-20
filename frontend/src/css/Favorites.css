@@ -1,52 +1,103 @@
+/* ===========================================
+   FAVORITES WRAPPER
+=========================================== */
 .favorites {
-    padding: 2rem;
-    width: 100%;
-    box-sizing: border-box;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section Title */
+.favorites h2 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ===========================================
+   EMPTY STATE (Modern Glassy Look)
+=========================================== */
+.favorites-empty {
+  text-align: center;
+  padding: 3rem 1.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 650px;
+
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  animation: fadeIn 0.4s ease-out;
+}
+
+.favorites-empty h2 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  color: #e50914;
+  font-weight: 700;
+}
+
+.favorites-empty p {
+  color: #b5b5b5;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===========================================
+   GRID ANIMATION (Smooth Load)
+=========================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
-  
-  .favorites h2 {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: 2.5rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+.movies-grid > * {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+/* ===========================================
+   RESPONSIVE BREAKPOINTS
+=========================================== */
+@media (max-width: 768px) {
+  .favorites {
+    padding: 2rem 1rem;
+  }
+
   .favorites-empty {
-    text-align: center;
-    padding: 4rem 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem 1.5rem;
+  }
+
+  .favorites h2 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites-empty {
+    padding: 2rem 1.2rem;
     border-radius: 12px;
-    margin: 2rem auto;
-    max-width: 600px;
   }
-  
+
   .favorites-empty h2 {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    color: #e50914;
+    font-size: 1.6rem;
   }
-  
+
   .favorites-empty p {
-    color: #999;
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1rem;
   }
-  
-  
-  /* Animation for new favorites being added */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .movies-grid > * {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
-  
+}
