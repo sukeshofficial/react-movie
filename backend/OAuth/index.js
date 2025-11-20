@@ -1,6 +1,8 @@
 const express = require("express");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const cors = require("cors");
+
 
 dotenv.config();
 console.log("ENV CLIENT ID:", process.env.GITHUB_CLIENT_ID);
@@ -8,6 +10,11 @@ console.log("ENV CLIENT ID:", process.env.GITHUB_CLIENT_ID);
 
 const app = express();
 const PORT = 4001;
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 
 let loggedInUser = null;
 

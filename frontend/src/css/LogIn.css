@@ -55,3 +55,18 @@
 .auth button:active {
     transform: scale(0.96);
 }
+
+/* Skip Login */
+.skip-login {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #858585;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+  
+  .skip-login:hover {
+    color: #c1c1c1;
+  }
+  
