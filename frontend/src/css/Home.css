@@ -120,6 +120,14 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
+.loading-more {
+  text-align: center;
+  color: #ccc;
+  margin: 2rem 0;
+  font-size: 16px;
+}
+
+
 /* ===============================
    RESPONSIVE BREAKPOINTS
 ==================================*/

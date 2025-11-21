@@ -20,7 +20,10 @@ function MovieCard({ movie }) {
             </div>
             <div className="movie-info">
                 <h3>{movie.title}</h3>
-                <p>{movie.release_date?.split("-")[0]}</p>
+                <p>{movie.release_date?.slice(0, 4)}</p>
+                <div className="rating-badge">
+  ⭐ {movie.vote_average.toFixed(1)}
+</div>
             </div>
         </div>
     );

@@ -9,22 +9,44 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
 
   useEffect(() => {
-    const loadPopularMovies = async () => {
-      try {
-        const popularMovies = await getPopularMovies();
-        setMovies(popularMovies);
-      } catch (err) {
-        console.log(err);
-        setError("Failed To load movies....");
-      } finally {
-        setLoading(false);
+    loadMovies(page);
+  }, []);
+
+  const loadMovies = async (pageNumber) => {
+    try {
+      const popularMovies = await getPopularMovies(pageNumber);
+      setMovies((prev) => [...prev, ...popularMovies]);
+    } catch (err) {
+      setError("Failed to load movies...");
+    } finally {
+      setLoading(false);
+      setIsFetchingMore(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const bottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+
+      if (bottom && !isFetchingMore && !loading) {
+        setIsFetchingMore(true);
+        setPage((prev) => prev + 1);
       }
     };
 
-    loadPopularMovies();
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFetchingMore, loading]);
+
+  // Fetch next page when page increments
+  useEffect(() => {
+    if (page !== 1) loadMovies(page);
+  }, [page]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -76,6 +98,9 @@ function Home() {
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
+      )}
+      {isFetchingMore && (
+        <div className="loading-more">Loading more movies...</div>
       )}
     </div>
   );
