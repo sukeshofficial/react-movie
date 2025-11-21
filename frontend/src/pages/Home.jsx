@@ -34,8 +34,13 @@ function Home() {
     setLoading(true);
     try {
       const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults);
-      setError(null);
+      if (searchResults.length === 0) {
+        setError(`No results found for "${searchQuery}"`);
+        setMovies([]);
+      } else {
+        setError(null);
+        setMovies(searchResults);
+      }
     } catch (err) {
       console.log(err);
       setError("Failed to search movies...");
@@ -43,7 +48,7 @@ function Home() {
       setLoading(false);
     }
 
-    searchQuery("");
+    setSearchQuery("");
   };
 
   return (
