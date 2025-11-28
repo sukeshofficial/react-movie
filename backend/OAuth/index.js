@@ -81,11 +81,82 @@ app.get("/auth/github/callback", async (req, res) => {
   }
 });
 
+// GOOGLE LOGIN STEP 1
+app.get("/auth/google", (_req, res) => {
+  const redirectUri = "http://localhost:4001/auth/google/callback";
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+
+  const url = 
+    "https://accounts.google.com/o/oauth2/v2/auth?" +
+    new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      response_type: "code",
+      scope: "email profile",
+      prompt: "consent"
+    }).toString();
+
+  res.redirect(url);
+});
+
+// GOOGLE LOGIN CALLBACK
+app.get("/auth/google/callback", async (req, res) => {
+  const code = req.query.code;
+
+  try {
+    const tokenRes = await axios.post(
+      "https://oauth2.googleapis.com/token",
+      {
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        code,
+        grant_type: "authorization_code",
+        redirect_uri: "http://localhost:4001/auth/google/callback",
+      }
+    );
+
+    const access_token = tokenRes.data.access_token;
+    
+    // 2️⃣ Fetch user info
+    const userRes = await axios.get(
+      "https://www.googleapis.com/oauth2/v3/userinfo",
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+
+    const userData = userRes.data;
+
+    loggedInUser = {
+      name: userData.name,
+      email: userData.email,
+      picture: userData.picture,
+      provider: "google"
+    };
+
+    console.log("✅ Google user:", loggedInUser);
+    
+    res.redirect("http://localhost:5173/");
+  } catch (err) {
+    console.log("❌ Google OAuth Error:", err.message);
+    res.status(500).send("Google OAuth failed");
+  }
+});
+
 // To provide the name and email to frontend
 app.get("/auth/me", (req, res) => {
   if (!loggedInUser) return res.json(null);
   res.json(loggedInUser);
 });
+
+app.get("/logout", (req, res) => {
+  loggedInUser = null; // clear stored user data
+  console.log("🔴 User logged out");
+  res.redirect("http://localhost:5173/auth");
+});
+
 
 app.listen(PORT, () => {
   console.log(`Backend Running at http://localhost:${PORT}`);

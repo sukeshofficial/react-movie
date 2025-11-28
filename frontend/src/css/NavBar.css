@@ -92,6 +92,103 @@
   margin-top: 2px;
 }
 
+/* Avatar Button */
+.profile-button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(255, 0, 0, 0.67);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.profile-button:hover {
+  border-color: white;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  background: #ff4444;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+/* Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 220px;
+  padding: 15px;
+  background: rgba(0,0,0, 0.85);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(206, 206, 206, 0.166);
+  animation: dropdownFade 0.25s ease;
+  z-index: 10;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Profile Info */
+.profile-info {
+  margin-bottom: 15px;
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.profile-email {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 4px;
+}
+
+/* Logout Button */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ff3333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #ff1a1a;
+}
+
 /* ===========================================
    RESPONSIVE – MOBILE MENU
 =========================================== */

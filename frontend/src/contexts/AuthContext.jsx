@@ -8,6 +8,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const toastShown = useRef(false);
+  const logout = () => {
+    setUser(null);           // clear frontend user
+    window.location.href = "http://localhost:4001/logout";  
+  };
 
   // Fetch logged-in user on app load
 
@@ -30,6 +34,7 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     loading,
+    logout,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

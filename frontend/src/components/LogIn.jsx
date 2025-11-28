@@ -11,7 +11,10 @@ function LogIn() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const googleLogin = () => {};
+  const googleLogin = () => {
+    window.location.href = "http://localhost:4001/auth/google";
+  };
+  
   const githubLogin = () => {
     window.location.href = "http://localhost:4001/auth/github";
   };
